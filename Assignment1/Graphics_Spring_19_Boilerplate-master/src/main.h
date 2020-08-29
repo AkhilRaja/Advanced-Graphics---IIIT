@@ -16,7 +16,7 @@
 
 #define Columns 40
 #define Rows 40
-#define sizeOfCell 2
+#define sizeOfCell 5
 
 struct color_t {
     int r;

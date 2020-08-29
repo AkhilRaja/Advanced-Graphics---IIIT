@@ -3,10 +3,38 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Grid::checkNeighbours():grid.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentIndex">
+            </PersistentString>
+            <PersistentString
+               value = "current">
+            </PersistentString>
+            <PersistentString
+               value = "top">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Cell::drawBox(int, int):Cell.cpp">
          <PersistentStrings>
             <PersistentString
                value = "gridX">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cell::drawBox():Cell.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Grid::drawGrid():grid.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "current">
+            </PersistentString>
+            <PersistentString
+               value = "next">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

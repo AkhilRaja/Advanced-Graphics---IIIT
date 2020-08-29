@@ -19,9 +19,10 @@ public:
     Grid() {}
     void initGrid();
     void drawGrid();
-    Cell checkNeighbours();
+    int  checkNeighbours();
+    void removeWalls(Cell current, Cell next);
 private:
-    Cell *current;
+    Cell *current,*next;
     Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];
     int index(int i,int j);
 };

@@ -20,7 +20,7 @@ Grid grid;
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0;
 
-Timer t60(1.0 / 60);
+Timer t60(1.0 / 5);
 
 /* Render the scene with openGL */
 /* Edit this function according to your assignment */
@@ -65,6 +65,7 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Background color of the scene
     glClearColor (COLOR_BACKGROUND.r / 256.0, COLOR_BACKGROUND.g / 256.0, COLOR_BACKGROUND.b / 256.0, 0.0f); // R, G, B, A
     glClearDepth (1.0f);
+//    glDepthFunc(GL_NEVER);
 
     glEnable (GL_DEPTH_TEST);
     glDepthFunc (GL_LEQUAL);

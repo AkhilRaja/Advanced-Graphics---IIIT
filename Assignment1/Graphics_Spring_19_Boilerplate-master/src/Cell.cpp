@@ -17,20 +17,8 @@ void Cell::initCell(int x,int y) {
 
 //Method to draw each Cell
 void Cell::drawBox() {
-    glLineWidth(1.0);
-    
-    //Debug Area
-    if(visited) {
-        glColor3f(0.5, 0.5, 0.1);
-        glBegin(GL_POLYGON);
-            glVertex2f(gridX, gridY);
-            glVertex2f(gridX+sizeOfCell, gridY);
-            glVertex2f(gridX+sizeOfCell, gridY+sizeOfCell);
-            glVertex2f(gridX, gridY+sizeOfCell);
-        glEnd();
-    }
-    else
-        glColor3f(1.0, 0, 0);
+    glLineWidth(2.0);
+    glColor3f(1.0, 0, 0);
     
     if(walls[0]) {
         glBegin(GL_LINES);
@@ -56,6 +44,19 @@ void Cell::drawBox() {
             glVertex2f(gridX, gridY);
         glEnd();
     }
+    
+    
+      //Debug Area
+       if(visited) {
+           glColor4d(0.2, 0.2, 0.5, 0.0);
+           glBegin(GL_POLYGON);
+               glVertex2f(gridX, gridY);
+               glVertex2f(gridX+sizeOfCell, gridY);
+               glVertex2f(gridX+sizeOfCell, gridY+sizeOfCell);
+               glVertex2f(gridX, gridY+sizeOfCell);
+           glEnd();
+       }
+    
     
 }
 

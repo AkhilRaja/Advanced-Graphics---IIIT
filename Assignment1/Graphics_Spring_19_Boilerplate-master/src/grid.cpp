@@ -6,7 +6,7 @@
 //
 
 #include "grid.hpp"
-
+#include<iostream>
 
 void Grid::initGrid() {
     int index=0;
@@ -19,45 +19,68 @@ void Grid::initGrid() {
 }
 
 void Grid::drawGrid() {
-    current->visited = 1;
     int cellLength = sizeof(cells)/sizeof(cells[0]);
     for(int i=0;i<cellLength;i++) {
         cells[i].drawBox();
+    }
+    //Set Visited of the current cell to true
+    current->visited = 1;
+    int nextIndex = checkNeighbours();
+    if( nextIndex != -1) {
+        next = &cells[nextIndex];
+        next->visited = 1;
+//        removeWalls(current, next);
+        current = next;
     }
 }
 
 //Return the index of the nighbours
 int Grid::index(int i,int j) {
-    if(i<0||j<0||i>(Columns/sizeOfCell)-1||j>(Rows/sizeOfCell)-1) {
+    if(i<0||j<0||i>(Columns-1)||j>(Rows-1)) {
         return -1;
     }
-    return (i/sizeOfCell) + (j/sizeOfCell) * (Columns/sizeOfCell);
+    return (j/sizeOfCell) + (i/sizeOfCell) * (Columns/sizeOfCell);
 }
 
 // Method to check the visited status of the neighbouring cells and return and unvisited cell
-Cell Grid::checkNeighbours() {
-    Cell neighbours[4];
+int Grid::checkNeighbours() {
+    int neighbours[4] = {0,0,0,0};
+    int neighbourSize = 0;
+    
+    int currentIndex = index(current->getGridX(), current->getGridY());
     
     int bottom = index(current->getGridX(), current->getGridY()-sizeOfCell);
-    if(bottom!=-1 && !cells[bottom].visited)
-        neighbours[0] = cells[bottom];
+    if(bottom!=-1 && !cells[bottom].visited) {
+        neighbours[neighbourSize++] = bottom;
+    }
     
     int right = index(current->getGridX()+sizeOfCell, current->getGridY());
-    if(right!=-1 && !cells[right].visited)
-        neighbours[1] = cells[right];
+    if(right!=-1 && !cells[right].visited) {
+        neighbours[neighbourSize++] = right;
+    }
+        
     
     int top = index(current->getGridX(), current->getGridY()+sizeOfCell);
-    if(top!=-1 && !cells[top].visited)
-        neighbours[2] = cells[top];
+    if(top!=-1 && !cells[top].visited) {
+        neighbours[neighbourSize++] = top;
+    }
+        
     
     int left = index(current->getGridX()-sizeOfCell, current->getGridY());
-    if(left!=-1 && !cells[left].visited)
-        neighbours[3] = cells[right];
-    
-    int neighbourSize = sizeof(neighbours)/sizeof(neighbours[0]);
+    if(left!=-1 && !cells[left].visited) {
+        neighbours[neighbourSize++] = left;
+    }
+        
     if(neighbourSize > 0) {
-        return neighbours[rand()%neighbourSize];
+        int randomNeighbour = neighbours[rand()%neighbourSize];
+        std::cout<<randomNeighbour<<",";
+        return randomNeighbour;
     }
     else
-        return;
+        return -1;
+}
+
+//Method to remove the common and shared walls between the two cells
+void Grid::removeWalls(Cell current, Cell next) {
+    
 }
