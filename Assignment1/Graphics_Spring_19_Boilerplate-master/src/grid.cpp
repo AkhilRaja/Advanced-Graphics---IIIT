@@ -10,6 +10,7 @@
 
 void Grid::initGrid() {
     int index=0;
+    std::cout<<"Loading Level ..";
     for(int i=0;i<Columns;i+=sizeOfCell) {
         for(int j=0;j<Rows;j+=sizeOfCell) {
             cells[index++].initCell(i,j);
@@ -18,27 +19,37 @@ void Grid::initGrid() {
     current = &cells[0];
 }
 
-void Grid::drawGrid() {
+void Grid::drawGrid(void (*levelLoadedCallback)()) {
+    //Loading the level
     int cellLength = sizeof(cells)/sizeof(cells[0]);
     for(int i=0;i<cellLength;i++) {
         cells[i].drawBox();
     }
-    //Set Visited of the current cell to true
-    if(current != NULL)
-        current->visited = 1;
     
-    int nextIndex = checkNeighbours();
-    
-    if( nextIndex != -1) {
-        next = &cells[nextIndex];
-        next->visited = 1;
-        //Remove common walls
-        removeWalls(current, next);
-        //Add the current to the stack
-        stack[stackIndex++] = current;
-        current = next;
-    } else if(stackIndex > 0){
-        current = stack[--stackIndex];
+    if(!levelLoaded) {
+        //Set Visited of the current cell to true
+        if(current != NULL)
+            current->visited = 1;
+        
+        int nextIndex = checkNeighbours();
+        
+        if( nextIndex != -1) {
+            next = &cells[nextIndex];
+            next->visited = 1;
+            //Remove common walls
+            removeWalls(current, next);
+            //Add the current to the stack
+            stack[stackIndex++] = current;
+            current = next;
+        } else if(stackIndex > 0){
+            current = stack[--stackIndex];
+        } else {
+            //Callback to let the main know level is loaded
+            levelLoaded = true;
+            
+            //If needed forward the cells from here to the main cpp
+            levelLoadedCallback();
+        }
     }
 }
 
@@ -67,7 +78,6 @@ int Grid::checkNeighbours() {
         neighbours[neighbourSize++] = right;
     }
         
-    
     int top = index(current->getGridX(), current->getGridY()+sizeOfCell);
     if(top!=-1 && !cells[top].visited) {
         neighbours[neighbourSize++] = top;
@@ -81,7 +91,6 @@ int Grid::checkNeighbours() {
         
     if(neighbourSize > 0) {
         int randomNeighbour = neighbours[rand()%neighbourSize];
-        std::cout<<randomNeighbour<<",";
         return randomNeighbour;
     }
     else

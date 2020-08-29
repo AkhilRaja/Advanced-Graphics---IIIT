@@ -16,9 +16,9 @@
 
 class Grid {
 public:
-    Grid() {stackIndex = 0;}
+    Grid() {stackIndex = 0;levelLoaded = false;}
     void initGrid();
-    void drawGrid();
+    void drawGrid(void (*func)());
     int  checkNeighbours();
     void removeWalls(Cell *current, Cell *next);
 private:
@@ -27,6 +27,7 @@ private:
     int index(int i,int j);
     Cell *stack[Columns/sizeOfCell*Rows/sizeOfCell];
     int stackIndex;
+    bool levelLoaded;
 };
 
 

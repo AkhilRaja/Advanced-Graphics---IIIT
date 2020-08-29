@@ -192,8 +192,9 @@
 		7F4BF181CD714B2DBBFABA3A /* VertexTriangleAdjacency.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD1E9274ECE84059A2B03389 /* VertexTriangleAdjacency.cpp */; };
 		7FAF8115CB7D47BFADFBA9B8 /* 3DSLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0237CDF3532408A82324586 /* 3DSLoader.cpp */; };
 		80FCD9E9B2B647C5BAD5BBBA /* clipboard.c in Sources */ = {isa = PBXBuildFile; fileRef = 0DD6B6F4C28944D3B46659D6 /* clipboard.c */; };
-		8323AF5B24F987ED00AEEF86 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF5924F987E700AEEF86 /* Cell.cpp */; };
-		8323AF6024FAA8A900AEEF86 /* grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF5E24FAA8A900AEEF86 /* grid.cpp */; };
+		8323AF6524FAF8DB00AEEF86 /* grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6324FAF8DA00AEEF86 /* grid.cpp */; };
+		8323AF6624FAF8DB00AEEF86 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6424FAF8DB00AEEF86 /* Cell.cpp */; };
+		8323AF6D24FAFCB500AEEF86 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6B24FAFCB400AEEF86 /* player.cpp */; };
 		840DD4013DD8419BA15FE273 /* TwMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = F479CA73B5B14EE6BBE83FB6 /* TwMgr.mm */; };
 		86D86A721E80483995775F82 /* MS3DLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE046D84DDEE44CB9228901C /* MS3DLoader.cpp */; };
 		8766EE895FA2485DBF209C01 /* HMPLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4140E91CA3F4A79997419A6 /* HMPLoader.cpp */; };
@@ -1266,9 +1267,11 @@
 		8323AF4E24F843C200AEEF86 /* ball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ball.h; path = ../src/ball.h; sourceTree = "<group>"; };
 		8323AF5424F8475000AEEF86 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = main.h; path = src/main.h; sourceTree = SOURCE_ROOT; };
 		8323AF5624F985C500AEEF86 /* Cell.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Cell.hpp; path = src/Cell.hpp; sourceTree = SOURCE_ROOT; };
-		8323AF5924F987E700AEEF86 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cell.cpp; path = src/Cell.cpp; sourceTree = "<group>"; };
-		8323AF5E24FAA8A900AEEF86 /* grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = grid.cpp; path = src/grid.cpp; sourceTree = "<group>"; };
 		8323AF6124FAB16200AEEF86 /* grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = grid.hpp; path = src/grid.hpp; sourceTree = SOURCE_ROOT; };
+		8323AF6324FAF8DA00AEEF86 /* grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = grid.cpp; path = ../src/grid.cpp; sourceTree = "<group>"; };
+		8323AF6424FAF8DB00AEEF86 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cell.cpp; path = ../src/Cell.cpp; sourceTree = "<group>"; };
+		8323AF6B24FAFCB400AEEF86 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = src/player.cpp; sourceTree = "<group>"; };
+		8323AF6C24FAFCB400AEEF86 /* player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = player.hpp; path = src/player.hpp; sourceTree = "<group>"; };
 		83D549D7388145C5AF03F6BE /* ASELoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ASELoader.cpp; path = "external/assimp-3.0.1270/code/ASELoader.cpp"; sourceTree = SOURCE_ROOT; };
 		845EC7D5F0AF45A196E5771B /* ColladaLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ColladaLoader.cpp; path = "external/assimp-3.0.1270/code/ColladaLoader.cpp"; sourceTree = SOURCE_ROOT; };
 		8469863CE27443659D08B27B /* SMDLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SMDLoader.cpp; path = "external/assimp-3.0.1270/code/SMDLoader.cpp"; sourceTree = SOURCE_ROOT; };
@@ -2517,6 +2520,24 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		8323AF6224FAF88500AEEF86 /* MazeGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				8323AF6324FAF8DA00AEEF86 /* grid.cpp */,
+				8323AF6424FAF8DB00AEEF86 /* Cell.cpp */,
+			);
+			path = MazeGeneration;
+			sourceTree = "<group>";
+		};
+		8323AF6724FAFC4F00AEEF86 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				8323AF6B24FAFCB400AEEF86 /* player.cpp */,
+				8323AF6C24FAFCB400AEEF86 /* player.hpp */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
 		8360547A15AD4D30A53ED740 /* SMD */ = {
 			isa = PBXGroup;
 			children = (
@@ -2683,17 +2704,17 @@
 		B047BBB42C9D47CDB2060C30 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				8323AF6724FAFC4F00AEEF86 /* Player */,
+				8323AF6224FAF88500AEEF86 /* MazeGeneration */,
 				8323AF5324F8467D00AEEF86 /* Headers */,
 				8323AF5224F8466000AEEF86 /* Shaders */,
 				7FA2BD87E9884D5BA4459CC7 /* ball.cpp */,
-				8323AF5924F987E700AEEF86 /* Cell.cpp */,
 				422506F3B53343E5959327EE /* color.cpp */,
 				369532D1279A4E77AD430432 /* input.cpp */,
 				CBA5D0F651494802A6F167EC /* main.cpp */,
 				64DF0F33BE1F45E4BFCC10A7 /* nonedit.cpp */,
 				78E1FC7C98094DFD8AB0A414 /* other_handlers.cpp */,
 				752DF952C1D64086A8961F0C /* timer.cpp */,
-				8323AF5E24FAA8A900AEEF86 /* grid.cpp */,
 			);
 			name = "Source Files";
 			sourceTree = "<group>";
@@ -4306,15 +4327,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8323AF6624FAF8DB00AEEF86 /* Cell.cpp in Sources */,
 				EECD7E0AE99D4D248B4BC097 /* ball.cpp in Sources */,
-				8323AF5B24F987ED00AEEF86 /* Cell.cpp in Sources */,
-				8323AF6024FAA8A900AEEF86 /* grid.cpp in Sources */,
 				0E81F7BE65ED403487137A65 /* color.cpp in Sources */,
 				6C538D4543514E7AAF1736F2 /* input.cpp in Sources */,
 				C9DACE05F9E1431F91D9E3AC /* main.cpp in Sources */,
 				9F6AD338B78C4EBA8061A217 /* nonedit.cpp in Sources */,
+				8323AF6D24FAFCB500AEEF86 /* player.cpp in Sources */,
 				CABB2BA25B674A64A81C0BED /* other_handlers.cpp in Sources */,
 				931446CE2BE449938AC5FAB4 /* timer.cpp in Sources */,
+				8323AF6524FAF8DB00AEEF86 /* grid.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

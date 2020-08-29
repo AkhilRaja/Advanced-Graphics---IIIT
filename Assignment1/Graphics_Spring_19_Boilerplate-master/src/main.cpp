@@ -11,51 +11,73 @@ GLuint     programID;
 GLFWwindow *window;
 
 /**************************
-* Customizable functions *
+* Game Manager *
 **************************/
 
-Ball ball1;
+//Level
 Grid grid;
 
+//Camera Configs
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0;
 
 Timer t60(1.0 / 60);
 
-/* Render the scene with openGL */
-/* Edit this function according to your assignment */
+//Draw Function
 void draw() {
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram (programID);
-    grid.drawGrid();
+    grid.drawGrid(levelLoadedCallback);
 }
 
+//Level Loaded Callback
+void levelLoadedCallback() {
+    std::cout<<"Level Loaded";
+    
+    //TODO: Mark the start and end points
+    //TODO: Spawn the Player
+}
+
+//TODO:: Move this to input.cpp
 void tick_input(GLFWwindow *window) {
+    int bottom  = glfwGetKey(window, GLFW_KEY_DOWN);
     int left  = glfwGetKey(window, GLFW_KEY_LEFT);
     int right = glfwGetKey(window, GLFW_KEY_RIGHT);
+    int top = glfwGetKey(window, GLFW_KEY_UP);
+    
     if (left) {
-        // Do something
         cout<<"left input is running";
+    }
+    if (right) {
+        cout<<"right input is running";
+    }
+    if (bottom) {
+        cout<<"bottom input is running";
+    }
+    if (top) {
+        cout<<"top input is running";
     }
 }
 
+//Not sure what this is
 void tick_elements() {
 //    ball1.tick();
 //    camera_rotation_angle += 1;
 }
 
 /* Initialize the OpenGL rendering properties */
-/* Add all the models to be created here */
-void initGL(GLFWwindow *window, int width, int height) {
-    /* Objects should be created before any other gl function and shaders */
-    // Create the models
+/* Perform all init here */
 
+void initGL(GLFWwindow *window, int width, int height) {
+    
+    // Create the models
     grid = Grid();
     grid.initGrid();
     
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files
+    
 //    programID = LoadShaders("/Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Sample_GL.vert", "/Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Sample_GL.frag");
 ////    // Get a handle for our "MVP" uniform
 //    Matrices.MatrixID = glGetUniformLocation(programID, "MVP");
@@ -65,8 +87,6 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Background color of the scene
     glClearColor (COLOR_BACKGROUND.r / 256.0, COLOR_BACKGROUND.g / 256.0, COLOR_BACKGROUND.b / 256.0, 0.0f); // R, G, B, A
     glClearDepth (1.0f);
-//    glDepthFunc(GL_NEVER);
-
     glEnable (GL_DEPTH_TEST);
     glDepthFunc (GL_LEQUAL);
 
@@ -83,13 +103,11 @@ int main(int argc, char **argv) {
     int height = 600;
 
     window = initGLFW(width, height);
-
     initGL (window, width, height);
 
     /* Draw in loop */
     while (!glfwWindowShouldClose(window)) {
-        // Process timers
-
+        // Game Loop (FPS check)
         if (t60.processTick()) {
             // 60 fps
             // OpenGL Draw commands
