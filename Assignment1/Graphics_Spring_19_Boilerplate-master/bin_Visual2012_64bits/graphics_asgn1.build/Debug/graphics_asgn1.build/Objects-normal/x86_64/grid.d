@@ -1,5 +1,7 @@
 dependencies: \
-  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/main.cpp \
+  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/grid.cpp \
+  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/grid.hpp \
+  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Cell.hpp \
   /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/main.h \
   /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glew-1.13.0/include/GL/glew.h \
   /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glfw-3.1.2/include/GLFW/glfw3.h \
@@ -109,8 +111,4 @@ dependencies: \
   /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glm-0.9.7.1/glm/gtx/../gtc/../trigonometric.hpp \
   /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glm-0.9.7.1/glm/gtx/../gtc/../matrix.hpp \
   /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glm-0.9.7.1/glm/gtx/transform.inl \
-  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glm-0.9.7.1/glm/gtc/matrix_transform.hpp \
-  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/timer.h \
-  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/ball.h \
-  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Cell.hpp \
-  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/grid.hpp
+  /Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/external/glm-0.9.7.1/glm/gtc/matrix_transform.hpp

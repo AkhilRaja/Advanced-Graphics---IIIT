@@ -9,31 +9,38 @@
 #include "Cell.hpp"
 
 
-Cell::Cell(){
-    std::cout<<"Constructor call";
-}
-
-void Cell::initGrid(int x, int y) {
+void Cell::initCell(int x,int y) {
     gridX = x;
     gridY = y;
 }
 
-void Cell::drawGrid() {
-    for(int i=0;i<gridX;i+=2) {
-        for(int j=0;j<gridY;j+=2) {
-            drawBox(i, j);
-        }
-    }
-}
-
-void Cell::drawBox(int x,int y) {
+void Cell::drawBox() {
     glLineWidth(1.0);
+    
     glColor3f(1.0, 0, 0);
-
-    glBegin(GL_LINE_LOOP);
-        glVertex2f(x, y);
-        glVertex2f(x+2, y);
-        glVertex2f(x+2, y+2);
-        glVertex2f(x, y+2);
-    glEnd();
+    if(walls[0]) {
+        glBegin(GL_LINES);
+            glVertex2f(gridX, gridY);
+            glVertex2f(gridX+sizeOfCell, gridY);
+        glEnd();
+    }
+    if(walls[1]) {
+        glBegin(GL_LINES);
+            glVertex2f(gridX+sizeOfCell, gridY);
+            glVertex2f(gridX+sizeOfCell, gridY+sizeOfCell);
+        glEnd();
+    }
+    if(walls[2]) {
+        glBegin(GL_LINES);
+            glVertex2f(gridX+sizeOfCell, gridY+sizeOfCell);
+            glVertex2f(gridX, gridY+sizeOfCell);
+        glEnd();
+    }
+    if(walls[3]) {
+        glBegin(GL_LINES);
+            glVertex2f(gridX, gridY+sizeOfCell);
+            glVertex2f(gridX, gridY);
+        glEnd();
+    }
+    
 }

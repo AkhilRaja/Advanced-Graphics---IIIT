@@ -2,6 +2,7 @@
 #include "timer.h"
 #include "ball.h"
 #include "Cell.hpp"
+#include "grid.hpp"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ GLFWwindow *window;
 **************************/
 
 Ball ball1;
-Cell cell;
+Grid grid;
 
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0;
@@ -27,7 +28,7 @@ void draw() {
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram (programID);
-    cell.drawGrid();
+    grid.drawGrid();
 }
 
 void tick_input(GLFWwindow *window) {
@@ -50,9 +51,8 @@ void initGL(GLFWwindow *window, int width, int height) {
     /* Objects should be created before any other gl function and shaders */
     // Create the models
 
-    cell = Cell();
-    cell.initGrid(Columns,Rows);
-    
+    grid = Grid();
+    grid.initGrid();
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files
 //    programID = LoadShaders("/Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Sample_GL.vert", "/Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Sample_GL.frag");
@@ -111,10 +111,3 @@ bool detect_collision(bounding_box_t a, bounding_box_t b) {
            (abs(a.y - b.y) * 2 < (a.height + b.height));
 }
 
-//void reset_screen() {
-//    float top    = screen_center_y + 4 / screen_zoom;
-//    float bottom = screen_center_y - 4 / screen_zoom;
-//    float left   = screen_center_x - 4 / screen_zoom;
-//    float right  = screen_center_x + 4 / screen_zoom;
-//    Matrices.projection = glm::ortho(left, right, bottom, top, 0.1f, 500.0f);
-//}

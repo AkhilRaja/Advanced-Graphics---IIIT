@@ -11,13 +11,20 @@
 
 class Cell {
 public:
-    Cell();
-    void initGrid(int x,int y);
-    void drawGrid();
-    void drawBox(int x, int y);
+    Cell(){
+        //Set all walls to true
+        for(int i=0;i<4;i++)
+            walls[i] = 1;
+        //Set visited to false
+        visited = 0;
+    };
+    void initCell(int x,int y);
+    void drawBox();
     void tick();
 private:
     int gridX,gridY;
+    int walls[4];
+    int visited;
 };
 
 

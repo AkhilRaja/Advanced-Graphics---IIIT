@@ -9,5 +9,19 @@
 #define grid_hpp
 
 #include <stdio.h>
+#include "Cell.hpp"
+#include "main.h"
+
+
+
+class Grid {
+public:
+    Grid() {}
+    void initGrid();
+    void drawGrid();
+private:
+    Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];
+};
+
 
 #endif /* grid_hpp */
