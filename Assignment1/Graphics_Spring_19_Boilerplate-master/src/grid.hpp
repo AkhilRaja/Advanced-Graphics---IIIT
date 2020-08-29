@@ -19,8 +19,11 @@ public:
     Grid() {}
     void initGrid();
     void drawGrid();
+    Cell checkNeighbours();
 private:
+    Cell *current;
     Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];
+    int index(int i,int j);
 };
 
 

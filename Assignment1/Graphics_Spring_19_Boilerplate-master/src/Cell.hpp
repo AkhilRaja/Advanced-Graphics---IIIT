@@ -11,6 +11,10 @@
 
 class Cell {
 public:
+    //Public Variables (Probably make them private)
+    //Create getters and setters later
+    int visited;
+    
     Cell(){
         //Set all walls to true
         for(int i=0;i<4;i++)
@@ -21,10 +25,11 @@ public:
     void initCell(int x,int y);
     void drawBox();
     void tick();
+    int getGridX();
+    int getGridY();
 private:
     int gridX,gridY;
     int walls[4];
-    int visited;
 };
 
 

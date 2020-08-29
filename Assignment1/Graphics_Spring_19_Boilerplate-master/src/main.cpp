@@ -53,6 +53,7 @@ void initGL(GLFWwindow *window, int width, int height) {
 
     grid = Grid();
     grid.initGrid();
+    
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files
 //    programID = LoadShaders("/Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Sample_GL.vert", "/Users/akhilraja/Documents/IIITH/AdvancedGraphics/Assignment1/Graphics_Spring_19_Boilerplate-master/src/Sample_GL.frag");
