@@ -16,7 +16,7 @@
 
 class Grid {
 public:
-    Grid() {}
+    Grid() {stackIndex = 0;}
     void initGrid();
     void drawGrid();
     int  checkNeighbours();
@@ -25,6 +25,8 @@ private:
     Cell *current,*next;
     Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];
     int index(int i,int j);
+    Cell *stack[Columns/sizeOfCell*Rows/sizeOfCell];
+    int stackIndex;
 };
 
 

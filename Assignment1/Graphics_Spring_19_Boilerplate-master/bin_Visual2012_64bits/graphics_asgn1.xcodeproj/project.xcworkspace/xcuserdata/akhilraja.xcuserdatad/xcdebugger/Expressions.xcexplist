@@ -36,6 +36,9 @@
             <PersistentString
                value = "next">
             </PersistentString>
+            <PersistentString
+               value = "stackIndex">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
    </ContextStates>

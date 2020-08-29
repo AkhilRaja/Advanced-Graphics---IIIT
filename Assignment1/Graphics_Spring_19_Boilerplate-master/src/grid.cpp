@@ -24,13 +24,21 @@ void Grid::drawGrid() {
         cells[i].drawBox();
     }
     //Set Visited of the current cell to true
-    current->visited = 1;
+    if(current != NULL)
+        current->visited = 1;
+    
     int nextIndex = checkNeighbours();
+    
     if( nextIndex != -1) {
         next = &cells[nextIndex];
         next->visited = 1;
+        //Remove common walls
         removeWalls(current, next);
+        //Add the current to the stack
+        stack[stackIndex++] = current;
         current = next;
+    } else if(stackIndex > 0){
+        current = stack[--stackIndex];
     }
 }
 
