@@ -29,7 +29,7 @@ void Grid::drawGrid() {
     if( nextIndex != -1) {
         next = &cells[nextIndex];
         next->visited = 1;
-//        removeWalls(current, next);
+        removeWalls(current, next);
         current = next;
     }
 }
@@ -81,6 +81,23 @@ int Grid::checkNeighbours() {
 }
 
 //Method to remove the common and shared walls between the two cells
-void Grid::removeWalls(Cell current, Cell next) {
+void Grid::removeWalls(Cell *current, Cell *next) {
+    int diffX = current->getGridX() - next->getGridX();
+    int diffY = current->getGridY() - next->getGridY();
+    if(diffX >= sizeOfCell) {
+        current->walls[3] = false;
+        next->walls[1] = false;
+    } else if (diffX <= -sizeOfCell){
+        current->walls[1] = false;
+        next->walls[3] = false;
+    }
+    
+    if(diffY >= sizeOfCell) {
+        current->walls[0] = false;
+        next->walls[2] = false;
+    } else if (diffY <= -sizeOfCell){
+        current->walls[2] = false;
+        next->walls[0] = false;
+    }
     
 }

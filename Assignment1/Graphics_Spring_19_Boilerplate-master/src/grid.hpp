@@ -20,7 +20,7 @@ public:
     void initGrid();
     void drawGrid();
     int  checkNeighbours();
-    void removeWalls(Cell current, Cell next);
+    void removeWalls(Cell *current, Cell *next);
 private:
     Cell *current,*next;
     Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];

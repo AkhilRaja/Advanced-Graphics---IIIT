@@ -14,7 +14,7 @@ public:
     //Public Variables (Probably make them private)
     //Create getters and setters later
     int visited;
-    
+    int walls[4];
     Cell(){
         //Set all walls to true
         for(int i=0;i<4;i++)
@@ -29,7 +29,6 @@ public:
     int getGridY();
 private:
     int gridX,gridY;
-    int walls[4];
 };
 
 
