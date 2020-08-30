@@ -26,7 +26,23 @@ public:
     void drawBox();
     void tick();
     int getGridX();
+    int getGridX(Directions dir) {
+        if(dir == leftD) {
+            return gridX;
+        }
+        if(dir == rightD) {
+            return gridX + sizeOfCell;
+        }
+    }
     int getGridY();
+    int getGridY(Directions dir) {
+        if(dir == topD) {
+            return gridY + sizeOfCell;
+        }
+        if(dir == bottomD) {
+            return gridY;
+        }
+    }
 private:
     int gridX,gridY;
 };

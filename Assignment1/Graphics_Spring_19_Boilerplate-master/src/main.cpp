@@ -21,6 +21,7 @@ bool isLevelLoaded = true;
 
 //Player Setup
 Player player;
+Cell *currentCell;
 
 //Camera Configs
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
@@ -35,11 +36,19 @@ void draw() {
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram (programID);
     
+    
     //Setup Scene
     grid.drawGrid(levelLoadedCallback);
     
     //Draw Player
     if(isLevelLoaded) {
+        //Compute the current cell for the player
+        detectCurrentPlayerCell();
+        //Set current cell of Player
+        player.setCurrentCell(currentCell);
+        //Collision with the walls
+        player.checkForWalls();
+        //Draw the player
         player.drawPlayer();
     }
 }
@@ -142,6 +151,22 @@ int main(int argc, char **argv) {
     }
 
     quit(window);
+}
+
+void detectCurrentPlayerCell() {
+    Cell *cells = grid.getCells();
+    int cellsLength = Columns/sizeOfCell*Rows/sizeOfCell;
+    for(int i=0;i<cellsLength;i++) {
+        if(player.getX()< (cells+i)->getGridX()+sizeOfCell &&
+           player.getX()> (cells+i)->getGridX()) {
+            if(player.getY()< (cells+i)->getGridY()+sizeOfCell &&
+               player.getY()> (cells+i)->getGridY()) {
+//                cout<<"Current cell is : " << i;
+                currentCell = (cells+i);
+            }
+        }
+    }
+    
 }
 
 bool detect_collision(bounding_box_t a, bounding_box_t b) {

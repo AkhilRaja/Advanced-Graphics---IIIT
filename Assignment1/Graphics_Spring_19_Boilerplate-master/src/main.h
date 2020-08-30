@@ -18,6 +18,9 @@
 #define Rows 45
 #define sizeOfCell 3
 
+//Use the directions here
+enum Directions {bottomD,rightD,topD,leftD};
+
 struct color_t {
     int r;
     int g;
@@ -90,6 +93,6 @@ extern const color_t COLOR_BACKGROUND;
 
 // Callbacks
 void levelLoadedCallback();
-
+void detectCurrentPlayerCell();
 
 #endif

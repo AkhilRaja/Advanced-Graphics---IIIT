@@ -12,8 +12,7 @@
 #include "main.h"
 #include "Cell.hpp"
 
-//Use the directions here
-enum Directions {bottomD,rightD,topD,leftD};
+
 
 //For me :::
 //TODO: The player will move from the center of one cell to the center of another
@@ -30,7 +29,7 @@ public:
     int getX() {return x;}
     int getY() {return y;}
     void setDirection(int dir) {currentDirection = (Directions)dir;}
-    
+    void setCurrentCell(Cell *cell) { currentCell = cell;}
 private:
     double x,y;
     Cell *currentCell;

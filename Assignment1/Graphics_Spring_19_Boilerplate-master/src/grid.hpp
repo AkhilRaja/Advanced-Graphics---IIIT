@@ -21,6 +21,7 @@ public:
     void drawGrid(void (*func)());
     int  checkNeighbours();
     void removeWalls(Cell *current, Cell *next);
+    Cell* getCells() {return cells;}
 private:
     Cell *current,*next;
     Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];
