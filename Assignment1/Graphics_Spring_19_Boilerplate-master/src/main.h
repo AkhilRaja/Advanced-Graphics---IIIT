@@ -14,9 +14,9 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#define Columns 40
-#define Rows 40
-#define sizeOfCell 2
+#define Columns 45
+#define Rows 45
+#define sizeOfCell 3
 
 struct color_t {
     int r;
@@ -90,5 +90,6 @@ extern const color_t COLOR_BACKGROUND;
 
 // Callbacks
 void levelLoadedCallback();
+
 
 #endif

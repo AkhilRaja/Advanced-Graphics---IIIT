@@ -3,6 +3,7 @@
 #include "ball.h"
 #include "Cell.hpp"
 #include "grid.hpp"
+#include "player.hpp"
 
 using namespace std;
 
@@ -16,6 +17,10 @@ GLFWwindow *window;
 
 //Level
 Grid grid;
+bool isLevelLoaded = true;
+
+//Player Setup
+Player player;
 
 //Camera Configs
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
@@ -23,40 +28,49 @@ float camera_rotation_angle = 0;
 
 Timer t60(1.0 / 60);
 
+
 //Draw Function
 void draw() {
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram (programID);
+    
+    //Setup Scene
     grid.drawGrid(levelLoadedCallback);
+    
+    //Draw Player
+    if(isLevelLoaded) {
+        player.drawPlayer();
+    }
 }
 
 //Level Loaded Callback
 void levelLoadedCallback() {
     std::cout<<"Level Loaded";
+    isLevelLoaded = true;
     
     //TODO: Mark the start and end points
     //TODO: Spawn the Player
 }
 
-//TODO:: Move this to input.cpp
+////TODO:: Move this to input.cpp
 void tick_input(GLFWwindow *window) {
     int bottom  = glfwGetKey(window, GLFW_KEY_DOWN);
     int left  = glfwGetKey(window, GLFW_KEY_LEFT);
     int right = glfwGetKey(window, GLFW_KEY_RIGHT);
     int top = glfwGetKey(window, GLFW_KEY_UP);
-    
+
     if (left) {
-        cout<<"left input is running";
+        player.setDirection(leftD);
     }
     if (right) {
-        cout<<"right input is running";
+        player.setDirection(rightD);
     }
     if (bottom) {
-        cout<<"bottom input is running";
+        player.setDirection(bottomD);
     }
     if (top) {
-        cout<<"top input is running";
+        player.setDirection(topD);
     }
 }
 
@@ -74,6 +88,10 @@ void initGL(GLFWwindow *window, int width, int height) {
     // Create the models
     grid = Grid();
     grid.initGrid();
+    
+    //Player Initialisation
+    player = Player();
+    player.initPlayer(1, 1);
     
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files

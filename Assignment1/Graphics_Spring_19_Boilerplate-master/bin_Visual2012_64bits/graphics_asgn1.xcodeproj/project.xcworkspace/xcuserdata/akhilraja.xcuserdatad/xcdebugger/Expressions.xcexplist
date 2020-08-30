@@ -17,6 +17,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Player::drawPlayer():player.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentDirection">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Cell::drawBox(int, int):Cell.cpp">
          <PersistentStrings>
             <PersistentString

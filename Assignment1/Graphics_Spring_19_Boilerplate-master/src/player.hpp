@@ -13,7 +13,7 @@
 #include "Cell.hpp"
 
 //Use the directions here
-enum Directions {bottom,right,top,left};
+enum Directions {bottomD,rightD,topD,leftD};
 
 //For me :::
 //TODO: The player will move from the center of one cell to the center of another
@@ -21,7 +21,7 @@ enum Directions {bottom,right,top,left};
 
 class Player {
 public:
-    Player() {currentDirection = right;}
+    Player() {currentDirection = rightD;}
     void initPlayer(int x,int y);
     void drawPlayer();
     bool checkForWalls();
@@ -29,15 +29,16 @@ public:
     //Getters and Setters
     int getX() {return x;}
     int getY() {return y;}
-    void setCurrentCell (Cell *cell) { currentCell = cell;}
+    void setDirection(int dir) {currentDirection = (Directions)dir;}
     
 private:
-    int x,y;
+    double x,y;
     Cell *currentCell;
     Directions currentDirection;
     bool canMove;
     int lives;
     
+    void updateCell();
 };
 
 
