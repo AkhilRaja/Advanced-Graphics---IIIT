@@ -52,6 +52,13 @@ void draw() {
         detectCurrentPlayerCell();
         //Set current cell of Player
         player.setCurrentCell(currentCell);
+        if(currentCell != NULL) {
+            if(currentCell->fruit) {
+                player.updateScore();
+                currentCell->fruit = false;
+            }
+        }
+        
         //Collision with the walls
         player.checkForWalls();
         //Draw the player
@@ -111,11 +118,11 @@ void initGL(GLFWwindow *window, int width, int height) {
     
     //Player Initialisation
     player = Player();
-    player.initPlayer(1, 1);
+    player.initPlayer(1.5, 1.5);
     
     //Enemy Initilisation
     ghost = Enemy();
-    ghost.initEnemy(1, 1);
+    ghost.initEnemy(1, 35);
     
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files

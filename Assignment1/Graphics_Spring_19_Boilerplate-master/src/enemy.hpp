@@ -14,7 +14,7 @@ class Enemy {
 public:
     Enemy(){
     }
-    void initEnemy(int x,int y);
+    void initEnemy(float x,float y);
     void drawEnemy();
     
     //Getters and Setters

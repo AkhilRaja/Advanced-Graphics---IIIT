@@ -38,7 +38,7 @@ int frame2[96] = {
        0,0,0,1,1,1,1,1,1,0,0,0
 };
 
-void Enemy::initEnemy(int x, int y) {
+void Enemy::initEnemy(float x, float y) {
     this->x = x;
     this->y = y;
 }

@@ -17,6 +17,7 @@ void Cell::initCell(int x,int y) {
 
 //Method to draw each Cell
 void Cell::drawBox() {
+    drawFruit();
     glLineWidth(5.0);
     glColor3f(1.0, 0, 0);
     
@@ -45,21 +46,29 @@ void Cell::drawBox() {
         glEnd();
     }
     
-    
-      //Debug Area
-       if(visited) {
-           glColor4d(0.2, 0.2, 0.5, 0.0);
-           glBegin(GL_POLYGON);
-               glVertex2f(gridX, gridY);
-               glVertex2f(gridX+sizeOfCell, gridY);
-               glVertex2f(gridX+sizeOfCell, gridY+sizeOfCell);
-               glVertex2f(gridX, gridY+sizeOfCell);
-           glEnd();
-       }
-    
+//      //Creating the Grid
+//       if(visited) {
+//           glColor4d(0.2, 0.2, 0.5, 0.0);
+//           glBegin(GL_POLYGON);
+//               glVertex2f(gridX, gridY);
+//               glVertex2f(gridX+sizeOfCell, gridY);
+//               glVertex2f(gridX+sizeOfCell, gridY+sizeOfCell);
+//               glVertex2f(gridX, gridY+sizeOfCell);
+//           glEnd();
+//       }
+    drawFruit();
     
 }
 
+void Cell::drawFruit() {
+    glPointSize(5);
+    if(fruit) {
+        glColor4d(1, 1, 0, 0.5);
+        glBegin(GL_POINTS);
+        glVertex2f(gridX+1.5,gridY+1.5);
+        glEnd();
+    }
+}
 
 // Getter and Setter methods
 

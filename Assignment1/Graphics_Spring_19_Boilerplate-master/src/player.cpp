@@ -9,7 +9,7 @@
 
 
 //Spawn the player in this method
-void Player::initPlayer(int posX, int posY) {
+void Player::initPlayer(float posX, float posY) {
     //Inital Position
     x = posX;
     y = posY;
@@ -79,3 +79,7 @@ bool Player::checkForWalls() {
     }
 }
 
+void Player::updateScore() {
+    score++;
+    std::cout<<"Score : " << score;
+}

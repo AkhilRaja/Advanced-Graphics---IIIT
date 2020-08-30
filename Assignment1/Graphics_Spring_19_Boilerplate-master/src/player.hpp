@@ -17,7 +17,7 @@
 class Player {
 public:
     Player() {currentDirection = rightD;}
-    void initPlayer(int x,int y);
+    void initPlayer(float x,float y);
     void drawPlayer();
     bool checkForWalls();
     
@@ -26,13 +26,14 @@ public:
     int getY() {return y;}
     void setDirection(int dir) {currentDirection = (Directions)dir;}
     void setCurrentCell(Cell *cell) { currentCell = cell;}
+    void updateScore();
 private:
     double x,y;
     Cell *currentCell;
     Directions currentDirection;
     bool canMove;
     int lives;
-    
+    int score;
     void updateCell();
 };
 
