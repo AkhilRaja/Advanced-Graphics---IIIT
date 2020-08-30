@@ -17,7 +17,7 @@ void Cell::initCell(int x,int y) {
 
 //Method to draw each Cell
 void Cell::drawBox() {
-    glLineWidth(2.0);
+    glLineWidth(5.0);
     glColor3f(1.0, 0, 0);
     
     if(walls[0]) {

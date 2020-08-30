@@ -4,6 +4,7 @@
 #include "Cell.hpp"
 #include "grid.hpp"
 #include "player.hpp"
+#include "enemy.hpp"
 
 using namespace std;
 
@@ -23,6 +24,9 @@ bool isLevelLoaded = true;
 Player player;
 Cell *currentCell;
 
+//Enemy Setup
+Enemy ghost;
+
 //Camera Configs
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0;
@@ -40,8 +44,10 @@ void draw() {
     //Setup Scene
     grid.drawGrid(levelLoadedCallback);
     
-    //Draw Player
+    //Draw Player and Enemies
     if(isLevelLoaded) {
+        
+        ///Player Specifics
         //Compute the current cell for the player
         detectCurrentPlayerCell();
         //Set current cell of Player
@@ -50,6 +56,11 @@ void draw() {
         player.checkForWalls();
         //Draw the player
         player.drawPlayer();
+        
+        ///Enemy Specifics
+        //Draw the enemy
+        ghost.drawEnemy();
+        
     }
 }
 
@@ -101,6 +112,10 @@ void initGL(GLFWwindow *window, int width, int height) {
     //Player Initialisation
     player = Player();
     player.initPlayer(1, 1);
+    
+    //Enemy Initilisation
+    ghost = Enemy();
+    ghost.initEnemy(1, 1);
     
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files

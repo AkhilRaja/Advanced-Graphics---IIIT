@@ -14,10 +14,6 @@
 
 
 
-//For me :::
-//TODO: The player will move from the center of one cell to the center of another
-//For now it will be a jerky move which can be fixed later
-
 class Player {
 public:
     Player() {currentDirection = rightD;}

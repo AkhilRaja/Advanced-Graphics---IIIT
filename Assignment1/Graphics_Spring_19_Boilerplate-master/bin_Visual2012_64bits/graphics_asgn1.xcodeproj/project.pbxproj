@@ -195,6 +195,7 @@
 		8323AF6524FAF8DB00AEEF86 /* grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6324FAF8DA00AEEF86 /* grid.cpp */; };
 		8323AF6624FAF8DB00AEEF86 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6424FAF8DB00AEEF86 /* Cell.cpp */; };
 		8323AF6D24FAFCB500AEEF86 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6B24FAFCB400AEEF86 /* player.cpp */; };
+		8323AF7124FBDC6600AEEF86 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8323AF6F24FBDC6600AEEF86 /* enemy.cpp */; };
 		840DD4013DD8419BA15FE273 /* TwMgr.mm in Sources */ = {isa = PBXBuildFile; fileRef = F479CA73B5B14EE6BBE83FB6 /* TwMgr.mm */; };
 		86D86A721E80483995775F82 /* MS3DLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE046D84DDEE44CB9228901C /* MS3DLoader.cpp */; };
 		8766EE895FA2485DBF209C01 /* HMPLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4140E91CA3F4A79997419A6 /* HMPLoader.cpp */; };
@@ -1272,6 +1273,8 @@
 		8323AF6424FAF8DB00AEEF86 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cell.cpp; path = ../src/Cell.cpp; sourceTree = "<group>"; };
 		8323AF6B24FAFCB400AEEF86 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = src/player.cpp; sourceTree = "<group>"; };
 		8323AF6C24FAFCB400AEEF86 /* player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = player.hpp; path = src/player.hpp; sourceTree = "<group>"; };
+		8323AF6F24FBDC6600AEEF86 /* enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = enemy.cpp; path = src/enemy.cpp; sourceTree = "<group>"; };
+		8323AF7024FBDC6600AEEF86 /* enemy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = enemy.hpp; path = src/enemy.hpp; sourceTree = "<group>"; };
 		83D549D7388145C5AF03F6BE /* ASELoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ASELoader.cpp; path = "external/assimp-3.0.1270/code/ASELoader.cpp"; sourceTree = SOURCE_ROOT; };
 		845EC7D5F0AF45A196E5771B /* ColladaLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ColladaLoader.cpp; path = "external/assimp-3.0.1270/code/ColladaLoader.cpp"; sourceTree = SOURCE_ROOT; };
 		8469863CE27443659D08B27B /* SMDLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SMDLoader.cpp; path = "external/assimp-3.0.1270/code/SMDLoader.cpp"; sourceTree = SOURCE_ROOT; };
@@ -2538,6 +2541,15 @@
 			name = Player;
 			sourceTree = "<group>";
 		};
+		8323AF6E24FBDC4D00AEEF86 /* Enemy */ = {
+			isa = PBXGroup;
+			children = (
+				8323AF6F24FBDC6600AEEF86 /* enemy.cpp */,
+				8323AF7024FBDC6600AEEF86 /* enemy.hpp */,
+			);
+			name = Enemy;
+			sourceTree = "<group>";
+		};
 		8360547A15AD4D30A53ED740 /* SMD */ = {
 			isa = PBXGroup;
 			children = (
@@ -2704,6 +2716,7 @@
 		B047BBB42C9D47CDB2060C30 /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				8323AF6E24FBDC4D00AEEF86 /* Enemy */,
 				8323AF6724FAFC4F00AEEF86 /* Player */,
 				8323AF6224FAF88500AEEF86 /* MazeGeneration */,
 				8323AF5324F8467D00AEEF86 /* Headers */,
@@ -4334,6 +4347,7 @@
 				C9DACE05F9E1431F91D9E3AC /* main.cpp in Sources */,
 				9F6AD338B78C4EBA8061A217 /* nonedit.cpp in Sources */,
 				8323AF6D24FAFCB500AEEF86 /* player.cpp in Sources */,
+				8323AF7124FBDC6600AEEF86 /* enemy.cpp in Sources */,
 				CABB2BA25B674A64A81C0BED /* other_handlers.cpp in Sources */,
 				931446CE2BE449938AC5FAB4 /* timer.cpp in Sources */,
 				8323AF6524FAF8DB00AEEF86 /* grid.cpp in Sources */,
