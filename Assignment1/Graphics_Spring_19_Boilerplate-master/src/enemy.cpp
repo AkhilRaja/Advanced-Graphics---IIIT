@@ -76,3 +76,26 @@ void Enemy::drawEnemy() {
         playFrame(frame2);
     }
 }
+
+//This method should be called each time the enemy moves to destination(cell1 to next cell)
+
+
+void Enemy::computePath(Cell *currentLocation,Cell *pacman) {
+    //Check the current location
+    //Look for possible directions from current
+    //Pick one
+    //Add current to stack
+    //Move to selected direction
+    //Repeat till either goal is acheived or deadend is reached
+    //If deadend pop and start again
+    
+    if(currentLocation == pacman) {
+        std::cout<<"Kill pacman";
+        //Gameover here
+    }
+    
+    
+    
+    
+}
+

@@ -41,3 +41,24 @@ void reshapeWindow(GLFWwindow *window, int width, int height) {
     glOrtho(0.0,Columns , 0.0, Rows, -1.0, 1.0);
     glMatrixMode (GL_MODELVIEW);
 }
+
+
+void zoomOrtho(float m_zoom) {
+    // Zoomed projection
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    
+//  Zoom by bringing the canvas to center of the screen
+//    glOrtho(-Columns * m_zoom, Columns * m_zoom,
+//        -Rows * m_zoom, Rows * m_zoom,
+//        -1, 1 );
+//
+    glOrtho(0, Columns * m_zoom,
+        0, Rows * m_zoom,
+        -1, 1 );
+    
+    // Pan camera on modelview
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+//    glTranslate(m_xpan, -m_ypan, 0);
+}

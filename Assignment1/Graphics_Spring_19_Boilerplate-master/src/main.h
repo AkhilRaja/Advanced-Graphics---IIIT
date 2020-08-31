@@ -95,4 +95,7 @@ extern const color_t COLOR_BACKGROUND;
 void levelLoadedCallback();
 void detectCurrentPlayerCell();
 
+
+void zoomOrtho(float m_zoom);
 #endif
+

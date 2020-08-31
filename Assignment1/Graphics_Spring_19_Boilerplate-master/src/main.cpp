@@ -33,7 +33,7 @@ float camera_rotation_angle = 0;
 
 Timer t60(1.0 / 60);
 
-
+float m_zoom = 1;
 //Draw Function
 void draw() {
     // clear the color and depth in the frame buffer
@@ -86,7 +86,9 @@ void tick_input(GLFWwindow *window) {
     int left  = glfwGetKey(window, GLFW_KEY_LEFT);
     int right = glfwGetKey(window, GLFW_KEY_RIGHT);
     int top = glfwGetKey(window, GLFW_KEY_UP);
-
+    int zoomOut = glfwGetKey(window,GLFW_KEY_Z);
+    int zoomIn = glfwGetKey(window,GLFW_KEY_X);
+    
     if (left) {
         player.setDirection(leftD);
     }
@@ -98,6 +100,14 @@ void tick_input(GLFWwindow *window) {
     }
     if (top) {
         player.setDirection(topD);
+    }
+    if(zoomOut) {
+        m_zoom+=0.01;
+        zoomOrtho(m_zoom);
+    }
+    if(zoomIn) {
+        m_zoom-=0.01;
+        zoomOrtho(m_zoom);
     }
 }
 

@@ -9,6 +9,7 @@
 #define enemy_hpp
 
 #include <stdio.h>
+#include "Cell.hpp"
 
 class Enemy {
 public:
@@ -20,12 +21,10 @@ public:
     //Getters and Setters
     int getX() {return x;}
     int getY() {return y;}
-    
+    void computePath(Cell *currentLocation,Cell *pacman);
 private:
     double x,y;
     void playFrame(int frame[]);
-//    static int frame1[96];
-//    static int frame2[96];
 };
 
 
