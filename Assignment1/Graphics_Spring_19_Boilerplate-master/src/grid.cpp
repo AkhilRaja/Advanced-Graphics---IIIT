@@ -11,15 +11,7 @@
 int powerUpDuration = 1000;
 int currentFrame;
 
-void powerUP() {
-    currentFrame ++;
-    
-        int x=rand()%Rows;
-        int y=rand()%Columns;
-        currentFrame = 0;
-        
-    
-}
+
 void Grid::initGrid() {
     int idx=0;
     std::cout<<"Loading Level ..";
@@ -39,18 +31,15 @@ void Grid::initGrid() {
             cells[idx].initCell(i,j);
             if(sp==idx){
                 cells[idx].powerUpSpeed=true;
-                   
-                
             }
             if(kp==idx){
                 cells[idx].powerUpKillGhost=true;
-                           //need to change color
-                       }
+                //need to change color
+            }
             idx++;
         }
     }
     current = &cells[0];
-    
 }
 
 
@@ -112,18 +101,18 @@ int Grid::checkNeighbours() {
     if(right!=-1 && !cells[right].visited) {
         neighbours[neighbourSize++] = right;
     }
-        
+    
     int top = index(current->getGridX(), current->getGridY()+sizeOfCell);
     if(top!=-1 && !cells[top].visited) {
         neighbours[neighbourSize++] = top;
     }
-        
+    
     
     int left = index(current->getGridX()-sizeOfCell, current->getGridY());
     if(left!=-1 && !cells[left].visited) {
         neighbours[neighbourSize++] = left;
     }
-        
+    
     if(neighbourSize > 0) {
         int randomNeighbour = neighbours[rand()%neighbourSize];
         return randomNeighbour;

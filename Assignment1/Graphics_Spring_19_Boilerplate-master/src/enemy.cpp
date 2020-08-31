@@ -17,27 +17,28 @@ int swapFrame = 1;
 Directions tdir = bottomD;
 
 int frame1[96] = {
-         1,1,0,0,0,0,0,0,0,0,1,1,
-         0,0,1,1,0,1,1,0,1,1,0,0,
-         0,0,0,1,1,0,0,1,1,0,0,0,
-         1,1,1,1,1,1,1,1,1,1,1,1,
-         1,1,1,0,0,1,1,0,0,1,1,1,
-         1,1,1,1,1,1,1,1,1,1,1,1,
-         0,1,1,1,1,1,1,1,1,1,1,0,
-         0,0,0,0,1,1,1,1,0,0,0,0
+    1,1,0,0,0,0,0,0,0,0,1,1,
+    0,0,1,1,0,1,1,0,1,1,0,0,
+    0,0,0,1,1,0,0,1,1,0,0,0,
+    1,1,1,1,1,1,1,1,1,1,1,1,
+    1,1,1,0,0,1,1,0,0,1,1,1,
+    1,1,1,1,1,1,1,1,1,1,1,1,
+    0,1,1,1,1,1,1,1,1,1,1,0,
+    0,0,0,0,1,1,1,1,0,0,0,0
 };
 
 int frame2[96] = {
-       0,1,0,1,0,0,0,0,1,0,1,0,
-       0,0,1,0,1,0,0,1,0,1,0,0,
-       0,0,0,1,0,0,0,0,1,0,0,0,
-       1,1,1,1,1,1,1,1,1,1,1,1,
-       1,1,1,0,1,1,1,1,0,1,1,1,
-       0,1,1,1,1,1,1,1,1,1,1,0,
-       0,0,1,1,1,1,1,1,1,1,0,0,
-       0,0,0,1,1,1,1,1,1,0,0,0
+    0,1,0,1,0,0,0,0,1,0,1,0,
+    0,0,1,0,1,0,0,1,0,1,0,0,
+    0,0,0,1,0,0,0,0,1,0,0,0,
+    1,1,1,1,1,1,1,1,1,1,1,1,
+    1,1,1,0,1,1,1,1,0,1,1,1,
+    0,1,1,1,1,1,1,1,1,1,1,0,
+    0,0,1,1,1,1,1,1,1,1,0,0,
+    0,0,0,1,1,1,1,1,1,0,0,0
 };
 
+//Set the defaults
 void Enemy::initEnemy(float x, float y) {
     this->x = x;
     this->y = y;
@@ -45,6 +46,7 @@ void Enemy::initEnemy(float x, float y) {
     this->dead=0;
 }
 
+//Animate the enemy
 void Enemy::playFrame(int frame[]) {
     glPointSize(3);
     for(int i=0;i<96;i++){
@@ -55,29 +57,66 @@ void Enemy::playFrame(int frame[]) {
         }
         if(frame[i]) {
             glBegin(GL_POINTS);
-               glColor3f(0, 1,0);
-               glVertex2f (x+tempX, y+tempY);
+            glColor3f(0, 1,0);
+            glVertex2f (x+tempX, y+tempY);
+            glEnd();
+        }
+        tempX+=0.2;
+    }
+}
+//Weak Enemy Color swap
+void Enemy::playFrameden(int frame[]) {
+    glPointSize(3);
+    for(int i=0;i<96;i++){
+        if(i%12 == 0) {
+            tempX = 0;
+            if(i!=0)
+                tempY+=0.2;
+        }
+        if(frame[i]) {
+            glBegin(GL_POINTS);
+            glColor3f(0.6, 0.3,0.2);
+            glVertex2f (x+tempX, y+tempY);
             glEnd();
         }
         tempX+=0.2;
     }
 }
 
+//Draw enemy
 void Enemy::drawEnemy() {
     if(!dead){
-    tempY = 0;
-    animIndex ++;
-    //Play Frame 1
-    if(animIndex % animationSpeed == 0) {
-        swapFrame *= -1;
-        animIndex = 0;
-    }
-    if(swapFrame <0 ) {
-        playFrame(frame1);
-    }
-    else {
-        playFrame(frame2);
-    }
+        if(weak){
+            tempY = 0;
+            animIndex ++;
+            //Play Frame 1
+            if(animIndex % animationSpeed == 0) {
+                swapFrame *= -1;
+                animIndex = 0;
+            }
+            if(swapFrame <0 ) {
+                playFrame(frame1);
+            }
+            else {
+                playFrameden(frame2);
+            }
+        }
+        else{
+            tempY = 0;
+            animIndex ++;
+            //Play Frame 1
+            if(animIndex % animationSpeed == 0) {
+                swapFrame *= -1;
+                animIndex = 0;
+            }
+            if(swapFrame <0 ) {
+                playFrame(frame1);
+            }
+            else {
+                playFrame(frame2);
+            }
+        }
+        
     }
 }
 
@@ -101,21 +140,18 @@ void Enemy::moveGhost() {
     
 }
 
-
-
 int cIndex=0;
 Cell cells[100];bool g=0;
 void Enemy::computePath(Grid *grid ,Cell *currentLocation,Cell *pacman,int vis[]) {
-
+    
     Cell* newCell;
     
     if(pacman == currentLocation) {
-        if(weak) {dead = true;
-            //ghost will die
-            
+        if(weak) {
+            dead = true;
         }
         else
-        std::cout<<"Pacman Dead";
+            std::cout<<"Pacman Dead";
     }
     
     //Cell Index
@@ -124,36 +160,10 @@ void Enemy::computePath(Grid *grid ,Cell *currentLocation,Cell *pacman,int vis[]
     for(int i=0;i<4;i++){
         if(!currentLocation->walls[i])
             v[poss++]=i;
-   }
+    }
     int p=rand()%poss;
     tdir = (Directions)v[p];
     moveGhost();
-//    newCell=grid->getNeighbour(tdir);
-    /*
-
-     if(currentLocation == pacman) {
-         std::cout<<"Kill pacman";
-         //Gameover here
-         g=1;
-         //get next cell index from here
-         return;
-     }
-    if(currentLocation!=NULL) {
-        int currentIndex = grid->index(currentLocation->getGridX(), currentLocation->getGridY());
-        
-        for(int i=0;i<4;i++){
-            if(!currentLocation->walls[i]&&!vis[currentIndex]){
-                vis[currentIndex]=1;
-                cells[cIndex++] = *currentLocation;
-                newCell = grid->getNeighbour(Directions(i));
-                computePath(grid,newCell, pacman, vis);
-                if(g==1)break;
-                vis[currentIndex]=0;
-                cIndex--;
-            }
-        }
-    }
-    */
     
 }
 

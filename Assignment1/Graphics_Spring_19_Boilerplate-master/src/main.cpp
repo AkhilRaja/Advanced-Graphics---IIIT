@@ -64,25 +64,30 @@ Timer t1(1.0);
 
 int vis[1000];
 
-float m_zoom = 1;int fc=INT_MIN;
+float m_zoom = 1;int fc=INT_MIN,sc=INT_MIN;
 //Draw Function
 void draw() {
     // clear the color and depth in the frame buffer
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram (programID);
     
-    
     //Setup Scene
     grid.drawGrid(levelLoadedCallback);
     
     //Draw Player and Enemies
     if(isLevelLoaded) {
+        if(player.getScore() < Columns/sizeOfCell * Rows/sizeOfCell) {
+        
         fc++;
+        sc++;
+        
         ///Player Specifics
         //Compute the current cell for the player
         detectCurrentPlayerCell();
         //Set current cell of Player
         player.setCurrentCell(currentCell);
+        
+        //Powerups and Gameplay
         if(currentCell != NULL) {
             if(currentCell->fruit) {
                 if(currentCell->powerUpKillGhost){
@@ -92,42 +97,29 @@ void draw() {
                        ghost2.weak=1;
                        ghost3.weak=1;
                        ghost4.weak=1;
+                    
                 }
                 if(currentCell->powerUpSpeed){
                     player.setMovementSpeed(0.2);
-                    fc=0;
+                    sc=0;
                 }
                 player.updateScore();
                 currentCell->fruit = false;
-                //check for waek ghosts in current cell
-                //if found kill the ghost
-                /*
-                Cell *ghostCurrentCell11= detectCurrentGhostCell(ghost1);
-                Cell *ghostCurrentCell21= detectCurrentGhostCell(ghost2);
-                Cell *ghostCurrentCell31= detectCurrentGhostCell(ghost3);
-                Cell *ghostCurrentCell41= detectCurrentGhostCell(ghost4);
-                if(currentCell==ghostCurrentCell11 && ghost1.weak){
-                    // make him disappear
-                    ghost1.dead=1;
-                }
-                if(currentCell==ghostCurrentCell21 && ghost2.weak){
-                              ghost2.dead=1;
-                              }
-                if(currentCell==ghostCurrentCell31 && ghost3.weak){
-                            ghost3.dead=1;
-                              }
-                if(currentCell==ghostCurrentCell41 && ghost4.weak){
-                              ghost4.dead=1;
-                              }
-                 */
             }
-            if(fc>=1000){
+            
+            //Duration for kill powerup
+            if(fc>=2000){
                 fc=INT_MIN;
                 //all ghosts becomes powerful again
                     ghost1.weak=0;
                     ghost2.weak=0;
                     ghost3.weak=0;
                     ghost4.weak=0;
+            }
+            //Duration for Speed powerup
+            if(sc>=3000){
+                sc=INT_MIN;
+                   player.setMovementSpeed(0.1);
             }
             
         }
@@ -137,27 +129,31 @@ void draw() {
         //Draw the player
         player.drawPlayer();
         
-        
         ///Enemy Specifics
         //Draw the enemies
         ghost1.drawEnemy();
         ghost2.drawEnemy();
         ghost3.drawEnemy();
         ghost4.drawEnemy();
+        
+        //Detect the current cell of ghosts
         ghostCurrentCell1= detectCurrentGhostCell(ghost1);
         ghostCurrentCell2= detectCurrentGhostCell(ghost2);
         ghostCurrentCell3= detectCurrentGhostCell(ghost3);
         ghostCurrentCell4= detectCurrentGhostCell(ghost4);
-        
+
+       //Everything here is called 1sec
         if(t1.processTick()) {
-//        Everything here is called 1sec
              ghost1.computePath(&grid,ghostCurrentCell1,currentCell,vis);
              ghost2.computePath(&grid,ghostCurrentCell2,currentCell,vis);
              ghost3.computePath(&grid,ghostCurrentCell3,currentCell,vis);
              ghost4.computePath(&grid,ghostCurrentCell4,currentCell,vis);
         }
-        
-    }
+        }
+        else {
+            cout<<"Gameover and you won";
+        }
+   }
 }
 
 //Level Loaded Callback

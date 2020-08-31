@@ -7,8 +7,6 @@
 
 #include "player.hpp"
 
-
-
 //Spawn the player in this method
 void Player::initPlayer(float posX, float posY) {
     //Inital Position
@@ -47,7 +45,7 @@ void Player::drawPlayer() {
                 startAngle = -60;
                 endAngle = 240;
                 y-=movementSpeed;
-             default:
+            default:
                 break;
         }
     }
@@ -57,10 +55,10 @@ void Player::drawPlayer() {
     glColor3f(1, 0, 0);
     glVertex2f (x, y);
     for(double i = startAngle; i <= endAngle;i++) {
-            glColor3f(0+i/endAngle, 1, 0);
-            theta = i * 3.14/180;
-            glVertex2f(x+cos(theta),y+sin(theta));
-        }
+        glColor3f(0+i/endAngle, 1, 0);
+        theta = i * 3.14/180;
+        glVertex2f(x+cos(theta),y+sin(theta));
+    }
     glEnd();
     
 }

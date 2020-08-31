@@ -29,6 +29,7 @@ public:
 private:
     double x,y;
     void playFrame(int frame[]);
+    void playFrameden(int frame[]);
 };
 
 
