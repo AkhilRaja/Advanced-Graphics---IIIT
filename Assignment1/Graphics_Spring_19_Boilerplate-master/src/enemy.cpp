@@ -41,6 +41,8 @@ int frame2[96] = {
 void Enemy::initEnemy(float x, float y) {
     this->x = x;
     this->y = y;
+    this->weak=0;
+    this->dead=0;
 }
 
 void Enemy::playFrame(int frame[]) {
@@ -62,6 +64,7 @@ void Enemy::playFrame(int frame[]) {
 }
 
 void Enemy::drawEnemy() {
+    if(!dead){
     tempY = 0;
     animIndex ++;
     //Play Frame 1
@@ -74,6 +77,7 @@ void Enemy::drawEnemy() {
     }
     else {
         playFrame(frame2);
+    }
     }
 }
 
@@ -106,6 +110,11 @@ void Enemy::computePath(Grid *grid ,Cell *currentLocation,Cell *pacman,int vis[]
     Cell* newCell;
     
     if(pacman == currentLocation) {
+        if(weak) {dead = true;
+            //ghost will die
+            
+        }
+        else
         std::cout<<"Pacman Dead";
     }
     

@@ -16,7 +16,7 @@
 
 class Player {
 public:
-    Player() {currentDirection = rightD;}
+    Player() {currentDirection = rightD;movementSpeed = 0.1;score = 0;}
     void initPlayer(float x,float y);
     void drawPlayer();
     bool checkForWalls();
@@ -26,6 +26,7 @@ public:
     int getY() {return y;}
     void setDirection(int dir) {currentDirection = (Directions)dir;}
     void setCurrentCell(Cell *cell) { currentCell = cell;}
+    void setMovementSpeed(double speed) {movementSpeed = speed;}
     void updateScore();
 private:
     double x,y;
@@ -34,6 +35,7 @@ private:
     bool canMove;
     int lives;
     int score;
+    double movementSpeed;
     void updateCell();
 };
 

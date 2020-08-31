@@ -14,6 +14,8 @@
 
 class Enemy {
 public:
+    bool dead,weak;
+    
     Enemy(){
     }
     void initEnemy(float x,float y);

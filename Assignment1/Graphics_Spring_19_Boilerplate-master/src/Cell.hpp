@@ -16,6 +16,9 @@ public:
     int visited;
     int walls[4];
     bool fruit;
+    bool powerUpSpeed;
+    bool powerUpKillGhost;
+    
     Cell(){
         //Set all walls to true
         for(int i=0;i<4;i++)
@@ -23,6 +26,8 @@ public:
         //Set visited to false
         visited = 0;
         fruit = true;
+        powerUpSpeed = false;
+        powerUpKillGhost = false;
     };
     void initCell(int x,int y);
     void drawBox();

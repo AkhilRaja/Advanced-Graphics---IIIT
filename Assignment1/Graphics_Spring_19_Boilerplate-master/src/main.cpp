@@ -8,6 +8,12 @@
 
 using namespace std;
 
+/**************************
+* Game Manager *
+**************************/
+
+
+
 GLMatrices Matrices;
 GLuint     programID;
 GLFWwindow *window;
@@ -15,9 +21,26 @@ GLFWwindow *window;
 //Method Declarations
 Cell * detectCurrentGhostCell(Enemy ghost);
 
-/**************************
-* Game Manager *
-**************************/
+
+//Unable to print the text(GLUT and FreeGlut methods not compiling on mac) so pushing the score and lives to debug 
+void displayText() {
+//    unsigned char string[] = "The quick god jumps over the lazy brown fox.";
+//    int w;
+//    w = glutBitmapLength(GLUT_BITMAP_TIMES_ROMAN_10, string);
+//    glRasterPos2f(0., 0.);
+//    float x = .5; /* Centre in the middle of the window */
+//    glRasterPos2f(x - (float) 10 / 2, 0.);
+//    glColor(1., 0., 0.);
+
+//    for (int i = 0; i < len; i++) {
+//    glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, "Text to appear!");
+
+//        glutBitmapCharacter(<#void *font#>, <#int character#>)
+//        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, string[i]);
+//    }
+
+}
+
 
 //Level
 Grid grid;
@@ -38,9 +61,10 @@ float camera_rotation_angle = 0;
 Timer t60(1.0 / 60);
 Timer t1(1.0);
 
+
 int vis[1000];
 
-float m_zoom = 1;
+float m_zoom = 1;int fc=INT_MIN;
 //Draw Function
 void draw() {
     // clear the color and depth in the frame buffer
@@ -53,7 +77,7 @@ void draw() {
     
     //Draw Player and Enemies
     if(isLevelLoaded) {
-        
+        fc++;
         ///Player Specifics
         //Compute the current cell for the player
         detectCurrentPlayerCell();
@@ -61,9 +85,51 @@ void draw() {
         player.setCurrentCell(currentCell);
         if(currentCell != NULL) {
             if(currentCell->fruit) {
+                if(currentCell->powerUpKillGhost){
+                    fc=0;
+                    //all ghosts weak variable should be on
+                       ghost1.weak=1;
+                       ghost2.weak=1;
+                       ghost3.weak=1;
+                       ghost4.weak=1;
+                }
+                if(currentCell->powerUpSpeed){
+                    player.setMovementSpeed(0.2);
+                    fc=0;
+                }
                 player.updateScore();
                 currentCell->fruit = false;
+                //check for waek ghosts in current cell
+                //if found kill the ghost
+                /*
+                Cell *ghostCurrentCell11= detectCurrentGhostCell(ghost1);
+                Cell *ghostCurrentCell21= detectCurrentGhostCell(ghost2);
+                Cell *ghostCurrentCell31= detectCurrentGhostCell(ghost3);
+                Cell *ghostCurrentCell41= detectCurrentGhostCell(ghost4);
+                if(currentCell==ghostCurrentCell11 && ghost1.weak){
+                    // make him disappear
+                    ghost1.dead=1;
+                }
+                if(currentCell==ghostCurrentCell21 && ghost2.weak){
+                              ghost2.dead=1;
+                              }
+                if(currentCell==ghostCurrentCell31 && ghost3.weak){
+                            ghost3.dead=1;
+                              }
+                if(currentCell==ghostCurrentCell41 && ghost4.weak){
+                              ghost4.dead=1;
+                              }
+                 */
             }
+            if(fc>=1000){
+                fc=INT_MIN;
+                //all ghosts becomes powerful again
+                    ghost1.weak=0;
+                    ghost2.weak=0;
+                    ghost3.weak=0;
+                    ghost4.weak=0;
+            }
+            
         }
         
         //Collision with the walls
@@ -73,7 +139,7 @@ void draw() {
         
         
         ///Enemy Specifics
-        //Draw the enemy
+        //Draw the enemies
         ghost1.drawEnemy();
         ghost2.drawEnemy();
         ghost3.drawEnemy();
@@ -82,6 +148,7 @@ void draw() {
         ghostCurrentCell2= detectCurrentGhostCell(ghost2);
         ghostCurrentCell3= detectCurrentGhostCell(ghost3);
         ghostCurrentCell4= detectCurrentGhostCell(ghost4);
+        
         if(t1.processTick()) {
 //        Everything here is called 1sec
              ghost1.computePath(&grid,ghostCurrentCell1,currentCell,vis);
@@ -110,6 +177,7 @@ void tick_input(GLFWwindow *window) {
     int top = glfwGetKey(window, GLFW_KEY_UP);
     int zoomOut = glfwGetKey(window,GLFW_KEY_Z);
     int zoomIn = glfwGetKey(window,GLFW_KEY_X);
+    int setStage = glfwGetKey(window,GLFW_KEY_S);
     
     if (left) {
         player.setDirection(leftD);
@@ -130,6 +198,9 @@ void tick_input(GLFWwindow *window) {
     if(zoomIn) {
         m_zoom-=0.01;
         zoomOrtho(m_zoom);
+    }
+    if(setStage) {
+        zoomOrtho(1.05);
     }
 }
 

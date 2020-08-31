@@ -61,13 +61,28 @@ void Cell::drawBox() {
 }
 
 void Cell::drawFruit() {
-    glPointSize(5);
+   
     if(fruit) {
-        glColor4d(1, 1, 0, 0.5);
+        if(powerUpSpeed)
+        {
+            glPointSize(10);
+            glColor4d(0, 0, 1, 1);
+        }
+        else if(powerUpKillGhost)
+        {
+            glPointSize(7);
+            glColor4d(1, 0, 0, 0.5);
+        }
+        else{
+            glColor4d(1, 1, 0, 0.5);
+            glPointSize(5);
+        }
+        
         glBegin(GL_POINTS);
         glVertex2f(gridX+1.5,gridY+1.5);
         glEnd();
     }
+    
 }
 
 // Getter and Setter methods

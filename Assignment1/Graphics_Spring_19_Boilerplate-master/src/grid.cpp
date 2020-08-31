@@ -8,16 +8,51 @@
 #include "grid.hpp"
 #include<iostream>
 
+int powerUpDuration = 1000;
+int currentFrame;
+
+void powerUP() {
+    currentFrame ++;
+    
+        int x=rand()%Rows;
+        int y=rand()%Columns;
+        currentFrame = 0;
+        
+    
+}
 void Grid::initGrid() {
-    int index=0;
+    int idx=0;
     std::cout<<"Loading Level ..";
+    int x=rand()%Rows;
+    int y=rand()%Columns;
+    int sp=index(x,y);
+    int x1=rand()%Rows;
+    int y1=rand()%Columns;
+    int kp=index(x1,y1);
+    if(x==x1){
+        if(x>1)x--;
+        else
+            x++;
+    }
     for(int i=0;i<Columns;i+=sizeOfCell) {
         for(int j=0;j<Rows;j+=sizeOfCell) {
-            cells[index++].initCell(i,j);
+            cells[idx].initCell(i,j);
+            if(sp==idx){
+                cells[idx].powerUpSpeed=true;
+                   
+                
+            }
+            if(kp==idx){
+                cells[idx].powerUpKillGhost=true;
+                           //need to change color
+                       }
+            idx++;
         }
     }
     current = &cells[0];
+    
 }
+
 
 void Grid::drawGrid(void (*levelLoadedCallback)()) {
     //Loading the level

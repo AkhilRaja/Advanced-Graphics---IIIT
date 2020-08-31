@@ -8,6 +8,7 @@
 #include "player.hpp"
 
 
+
 //Spawn the player in this method
 void Player::initPlayer(float posX, float posY) {
     //Inital Position
@@ -30,22 +31,22 @@ void Player::drawPlayer() {
             case rightD:
                 startAngle = 30;
                 endAngle = 330;
-                x+=0.1;
+                x+=movementSpeed;
                 break;
             case leftD:
                 startAngle = -150;
                 endAngle = 150;
-                x-=0.1;
+                x-=movementSpeed;
                 break;
             case topD:
                 startAngle = 130;
                 endAngle = 410;
-                y+=0.1;
+                y+=movementSpeed;
                 break;
             case bottomD:
                 startAngle = -60;
                 endAngle = 240;
-                y-=0.1;
+                y-=movementSpeed;
              default:
                 break;
         }
