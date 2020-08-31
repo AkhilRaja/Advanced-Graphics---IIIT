@@ -118,3 +118,22 @@ void Grid::removeWalls(Cell *current, Cell *next) {
     }
     
 }
+
+//Helper method to return cell from direction
+Cell* Grid::getNeighbour(Directions dir) {
+    int cellIndex = -1;
+    switch (dir) {
+        case leftD:
+            cellIndex = index(current->getGridX()-sizeOfCell, current->getGridY());
+            break;
+        case rightD:
+            cellIndex = index(current->getGridX()+sizeOfCell, current->getGridY());
+            break;
+        case topD:
+            cellIndex = index(current->getGridX(), current->getGridY()+sizeOfCell);
+            break;
+        case bottomD:
+            cellIndex = index(current->getGridX(), current->getGridY()-sizeOfCell);
+            break;
+    }
+}

@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "Cell.hpp"
+#include "grid.hpp"
 
 class Enemy {
 public:
@@ -21,7 +22,8 @@ public:
     //Getters and Setters
     int getX() {return x;}
     int getY() {return y;}
-    void computePath(Cell *currentLocation,Cell *pacman);
+    void computePath(Grid* grid,Cell *currentLocation,Cell *pacman, int vis[]);
+    void moveGhost();
 private:
     double x,y;
     void playFrame(int frame[]);

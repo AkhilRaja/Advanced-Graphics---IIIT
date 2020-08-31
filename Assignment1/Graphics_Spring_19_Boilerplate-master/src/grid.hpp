@@ -22,10 +22,11 @@ public:
     int  checkNeighbours();
     void removeWalls(Cell *current, Cell *next);
     Cell* getCells() {return cells;}
+    Cell* getNeighbour(Directions dir);
+    int index(int i,int j);
 private:
     Cell *current,*next;
     Cell cells[Columns/sizeOfCell*Rows/sizeOfCell];
-    int index(int i,int j);
     Cell *stack[Columns/sizeOfCell*Rows/sizeOfCell];
     int stackIndex;
     bool levelLoaded;

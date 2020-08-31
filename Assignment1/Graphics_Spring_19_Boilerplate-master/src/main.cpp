@@ -12,26 +12,33 @@ GLMatrices Matrices;
 GLuint     programID;
 GLFWwindow *window;
 
+//Method Declarations
+Cell * detectCurrentGhostCell(Enemy ghost);
+
 /**************************
 * Game Manager *
 **************************/
 
 //Level
 Grid grid;
-bool isLevelLoaded = true;
+bool isLevelLoaded = false;
 
 //Player Setup
 Player player;
 Cell *currentCell;
 
 //Enemy Setup
-Enemy ghost;
+Enemy ghost1,ghost2,ghost3,ghost4;
+Cell *ghostCurrentCell1,*ghostCurrentCell2,*ghostCurrentCell3,*ghostCurrentCell4;
 
 //Camera Configs
 float screen_zoom = 1, screen_center_x = 0, screen_center_y = 0;
 float camera_rotation_angle = 0;
 
 Timer t60(1.0 / 60);
+Timer t1(1.0);
+
+int vis[1000];
 
 float m_zoom = 1;
 //Draw Function
@@ -64,9 +71,24 @@ void draw() {
         //Draw the player
         player.drawPlayer();
         
+        
         ///Enemy Specifics
         //Draw the enemy
-        ghost.drawEnemy();
+        ghost1.drawEnemy();
+        ghost2.drawEnemy();
+        ghost3.drawEnemy();
+        ghost4.drawEnemy();
+        ghostCurrentCell1= detectCurrentGhostCell(ghost1);
+        ghostCurrentCell2= detectCurrentGhostCell(ghost2);
+        ghostCurrentCell3= detectCurrentGhostCell(ghost3);
+        ghostCurrentCell4= detectCurrentGhostCell(ghost4);
+        if(t1.processTick()) {
+//        Everything here is called 1sec
+             ghost1.computePath(&grid,ghostCurrentCell1,currentCell,vis);
+             ghost2.computePath(&grid,ghostCurrentCell2,currentCell,vis);
+             ghost3.computePath(&grid,ghostCurrentCell3,currentCell,vis);
+             ghost4.computePath(&grid,ghostCurrentCell4,currentCell,vis);
+        }
         
     }
 }
@@ -131,9 +153,18 @@ void initGL(GLFWwindow *window, int width, int height) {
     player.initPlayer(1.5, 1.5);
     
     //Enemy Initilisation
-    ghost = Enemy();
-    ghost.initEnemy(1, 35);
+    ghost1 = Enemy();
+    ghost1.initEnemy(0.5, 40);
     
+    ghost2 = Enemy();
+    ghost2.initEnemy(30.5, 16);
+
+    ghost3 = Enemy();
+    ghost3.initEnemy(42.5, 4);
+
+    ghost4 = Enemy();
+    ghost4.initEnemy(24.5, 40);
+       
     // Create and compile our GLSL program from the shaders
     // Had to provide the absolute path to load the files
     
@@ -198,7 +229,24 @@ void detectCurrentPlayerCell() {
             }
         }
     }
-    
+}
+//Detect Ghost Current Cell (Refactor to take the object as input and find its cell)
+
+Cell* detectCurrentGhostCell(Enemy ghost) {
+    Cell* ghostCurrentCell;
+    Cell *cells = grid.getCells();
+    int cellsLength = Columns/sizeOfCell*Rows/sizeOfCell;
+    for(int i=0;i<cellsLength;i++) {
+        if(ghost.getX()<= (cells+i)->getGridX()+sizeOfCell &&
+           ghost.getX()>= (cells+i)->getGridX()) {
+            if(ghost.getY()<= (cells+i)->getGridY()+sizeOfCell &&
+               ghost.getY()>= (cells+i)->getGridY()) {
+//                cout<<"Current cell is : " << i;
+                ghostCurrentCell = (cells+i);
+            }
+        }
+    }
+    return ghostCurrentCell;
 }
 
 bool detect_collision(bounding_box_t a, bounding_box_t b) {

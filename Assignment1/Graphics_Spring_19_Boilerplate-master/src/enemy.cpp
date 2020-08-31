@@ -14,7 +14,7 @@ float tempY = 0;
 int animationSpeed = 50;
 int animIndex = 0;
 int swapFrame = 1;
-
+Directions tdir = bottomD;
 
 int frame1[96] = {
          1,1,0,0,0,0,0,0,0,0,1,1,
@@ -77,25 +77,74 @@ void Enemy::drawEnemy() {
     }
 }
 
-//This method should be called each time the enemy moves to destination(cell1 to next cell)
-
-
-void Enemy::computePath(Cell *currentLocation,Cell *pacman) {
-    //Check the current location
-    //Look for possible directions from current
-    //Pick one
-    //Add current to stack
-    //Move to selected direction
-    //Repeat till either goal is acheived or deadend is reached
-    //If deadend pop and start again
-    
-    if(currentLocation == pacman) {
-        std::cout<<"Kill pacman";
-        //Gameover here
+void Enemy::moveGhost() {
+    switch (tdir) {
+        case leftD:
+            x-=3;
+            break;
+        case rightD:
+            x+=3;
+            break;
+        case topD:
+            y+=3;
+            break;
+        case bottomD:
+            y-=3;
+            break;
+        default:
+            break;
     }
     
+}
+
+
+
+int cIndex=0;
+Cell cells[100];bool g=0;
+void Enemy::computePath(Grid *grid ,Cell *currentLocation,Cell *pacman,int vis[]) {
+
+    Cell* newCell;
     
+    if(pacman == currentLocation) {
+        std::cout<<"Pacman Dead";
+    }
     
+    //Cell Index
+    int poss=0;
+    int v[5];
+    for(int i=0;i<4;i++){
+        if(!currentLocation->walls[i])
+            v[poss++]=i;
+   }
+    int p=rand()%poss;
+    tdir = (Directions)v[p];
+    moveGhost();
+//    newCell=grid->getNeighbour(tdir);
+    /*
+
+     if(currentLocation == pacman) {
+         std::cout<<"Kill pacman";
+         //Gameover here
+         g=1;
+         //get next cell index from here
+         return;
+     }
+    if(currentLocation!=NULL) {
+        int currentIndex = grid->index(currentLocation->getGridX(), currentLocation->getGridY());
+        
+        for(int i=0;i<4;i++){
+            if(!currentLocation->walls[i]&&!vis[currentIndex]){
+                vis[currentIndex]=1;
+                cells[cIndex++] = *currentLocation;
+                newCell = grid->getNeighbour(Directions(i));
+                computePath(grid,newCell, pacman, vis);
+                if(g==1)break;
+                vis[currentIndex]=0;
+                cIndex--;
+            }
+        }
+    }
+    */
     
 }
 
