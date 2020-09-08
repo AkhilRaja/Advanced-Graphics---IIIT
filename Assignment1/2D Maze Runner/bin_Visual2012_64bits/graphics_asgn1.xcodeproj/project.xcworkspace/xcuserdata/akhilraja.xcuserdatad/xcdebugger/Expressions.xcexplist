@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Grid::checkNeighbours():grid.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentIndex">
+            </PersistentString>
+            <PersistentString
+               value = "current">
+            </PersistentString>
+            <PersistentString
+               value = "top">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Player::drawPlayer():player.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentDirection">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cell::drawBox(int, int):Cell.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "gridX">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cell::drawBox():Cell.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Grid::drawGrid():grid.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "current">
+            </PersistentString>
+            <PersistentString
+               value = "next">
+            </PersistentString>
+            <PersistentString
+               value = "stackIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
