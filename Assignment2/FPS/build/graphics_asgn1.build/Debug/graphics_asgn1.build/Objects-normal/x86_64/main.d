@@ -1,8 +1,9 @@
 dependencies: \
   /Users/akhilraja/Documents/IIITH/GR-AR-VR/GR-AR-VR-Assignments/Assignment2/FPS/src/main.cpp \
-  src/main.h \
-  /Users/akhilraja/Documents/IIITH/GR-AR-VR/GR-AR-VR-Assignments/Assignment2/FPS/external/glew-1.13.0/include/GL/glew.h \
+  src/GameManager.h \
   /Users/akhilraja/Documents/IIITH/GR-AR-VR/GR-AR-VR-Assignments/Assignment2/FPS/external/glfw-3.1.2/include/GLFW/glfw3.h \
+  src/RenderSystem.h src/VertexBuffer.h src/ShaderInterface.h \
+  src/ShaderLoader.h src/ShaderData.h \
   /Users/akhilraja/Documents/IIITH/GR-AR-VR/GR-AR-VR-Assignments/Assignment2/FPS/external/glm-0.9.7.1/glm/glm.hpp \
   external/glm-0.9.7.1/glm/detail/_fixes.hpp \
   external/glm-0.9.7.1/glm/fwd.hpp \
@@ -93,21 +94,6 @@ dependencies: \
   external/glm-0.9.7.1/glm/vector_relational.hpp \
   external/glm-0.9.7.1/glm/integer.hpp \
   external/glm-0.9.7.1/glm/detail/func_integer.hpp \
-  external/glm-0.9.7.1/glm/detail/func_integer.inl \
-  /Users/akhilraja/Documents/IIITH/GR-AR-VR/GR-AR-VR-Assignments/Assignment2/FPS/external/glm-0.9.7.1/glm/gtx/transform.hpp \
-  external/glm-0.9.7.1/glm/gtx/../glm.hpp \
-  external/glm-0.9.7.1/glm/gtx/../gtc/matrix_transform.hpp \
-  external/glm-0.9.7.1/glm/gtc/../mat4x4.hpp \
-  external/glm-0.9.7.1/glm/gtc/../vec2.hpp \
-  external/glm-0.9.7.1/glm/gtc/../vec3.hpp \
-  external/glm-0.9.7.1/glm/gtc/../vec4.hpp \
-  external/glm-0.9.7.1/glm/gtc/../gtc/constants.hpp \
-  external/glm-0.9.7.1/glm/gtc/../detail/setup.hpp \
-  external/glm-0.9.7.1/glm/gtc/constants.inl \
-  external/glm-0.9.7.1/glm/gtc/matrix_transform.inl \
-  external/glm-0.9.7.1/glm/gtc/../geometric.hpp \
-  external/glm-0.9.7.1/glm/gtc/../trigonometric.hpp \
-  external/glm-0.9.7.1/glm/gtc/../matrix.hpp \
-  external/glm-0.9.7.1/glm/gtx/transform.inl \
-  /Users/akhilraja/Documents/IIITH/GR-AR-VR/GR-AR-VR-Assignments/Assignment2/FPS/external/glm-0.9.7.1/glm/gtc/matrix_transform.hpp \
-  src/timer.h src/ball.h Headers/Player.hpp
+  external/glm-0.9.7.1/glm/detail/func_integer.inl src/Vector4.h \
+  src/Entity.h src/CameraSystem.h SOIL2/SOIL2.h src/ResourceManager.h \
+  src/MovementSystem.h src/PlayerInputSystem.h src/Vector2.h src/Scene.h
